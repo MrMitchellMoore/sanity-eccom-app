@@ -10,6 +10,7 @@ export default function AddToBag({
   description,
   name,
   price,
+  price_id,
   image
 }: ProductCart) {
   const { addItem, handleCartClick } = useShoppingCart()
@@ -20,7 +21,7 @@ export default function AddToBag({
     price: price,
     currency: currency,
     image: urlFor(image).url(),
-    id: 'alnkndk'
+    price_id: price_id
   }
   return (
     <Button

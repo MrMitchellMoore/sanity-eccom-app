@@ -29,8 +29,22 @@ export default function ShoppingCartModal() {
     handleCartClick,
     cartDetails,
     removeItem,
-    totalPrice
+    totalPrice,
+    redirectToCheckout
   } = useShoppingCart()
+
+  async function handleCheckoutClick(event: any) {
+    event.preventDefault()
+    try {
+      const result = await redirectToCheckout()
+      if (result?.error) {
+        console.log('error: ', result)
+      }
+      return result
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Modal
@@ -99,9 +113,12 @@ export default function ShoppingCartModal() {
                   Shipping and Taxes are calculated at checkout.
                 </p>
               </div>
-              <Button color='primary' onPress={onClose}>
+              <button
+                className='w-full rounded-lg bg-blue-600 px-2 py-2 text-slate-900 hover:bg-blue-400'
+                onClick={handleCheckoutClick}
+              >
                 Checkout
-              </Button>
+              </button>
               <Button color='danger' variant='light' onPress={onClose}>
                 Close
               </Button>

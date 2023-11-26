@@ -17,6 +17,7 @@ async function getData(slug: string): Promise<fullProduct> {
             "imageUrl": image[0].asset->url,
             "slug": slug.current,
             "categoryName": category->name,
+            price_id
         }`
 
   const data = await client.fetch(query)
@@ -88,8 +89,16 @@ export default async function ProductPage({
                 image={data.imageUrl}
                 name={data.name}
                 price={data.price}
+                price_id={data.price_id}
               />
-              <CheckoutNow />
+              <CheckoutNow
+                currency='USD'
+                description={data.description}
+                image={data.imageUrl}
+                name={data.name}
+                price={data.price}
+                price_id={data.price_id}
+              />
             </div>
             <p className='mb-6 mt-6 tracking-wide text-gray-400'>
               {data.description}
