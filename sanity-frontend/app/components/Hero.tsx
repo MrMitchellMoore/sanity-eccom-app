@@ -1,0 +1,77 @@
+import { Image } from '@nextui-org/react'
+import NextImage from 'next/image'
+import { client, urlFor } from '../lib/sanity'
+import { Link } from '@nextui-org/react'
+import { groq } from 'next-sanity'
+import { heroImage } from '../interface'
+
+async function getData(): Promise<heroImage> {
+  const query = groq`*[_type == 'heroImage'][0]`
+  const data = await client.fetch(query)
+  return data
+}
+
+export default async function Hero() {
+  const data = await getData()
+  return (
+    <section className='mx-auto max-w-2xl px-4 sm:pb-6 lg:max-w-7xl lg:px-8'>
+      <div className='mb-8 flex flex-wrap justify-between md:mb-16'>
+        <div className='mb-6 flex-col justify-center sm:mb-12 lg:mb-0 lg:w-1/3 lg:pb-24 lg:pt-48'>
+          <h1 className='mb-4 text-4xl font-bold text-slate-400 sm:text-5xl md:mb-8 md:text-6xl'>
+            Top Fashion for a top price!
+          </h1>
+          <p className='max-w-md leading-relaxed text-gray-500 xl:text-lg'>
+            We sell only the most exclusive and high quality products for you.
+            We are the best so come and shop with us.
+          </p>
+        </div>
+        <div className='mb-12 mt-4 flex w-full md:mb-12 md:mt-10 lg:w-2/3'>
+          <div className='relative left-12 top-12 z-50 -ml-12 overflow-hidden rounded-lg shadow-lg md:left-16 md:top-16 lg:ml-0'>
+            <Image
+              as={NextImage}
+              src={urlFor(data.image1).url()}
+              alt='NextUI hero Image1'
+              className='h-full w-full object-cover object-center'
+              width={500}
+              height={500}
+              priority
+            />
+          </div>
+          <div className='overflow-hidden rounded-lg shadow-lg'>
+            <Image
+              as={NextImage}
+              src={urlFor(data.image2).url()}
+              alt='NextUI hero Image2'
+              className='h-full w-full object-cover object-center'
+              width={500}
+              height={500}
+              priority
+            />
+          </div>
+        </div>
+      </div>
+      <div className='flex flex-col items-center justify-between gap-8 md:flex-row'>
+        <div className='flex h-12 w-64 divide-x overflow-hidden rounded-lg border'>
+          <Link
+            href='/Women'
+            className='duration flex w-1/3 items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-blue-600 active:bg-gray-200 active:text-blue-600'
+          >
+            Women
+          </Link>
+          <Link
+            href='/Men'
+            className='duration flex w-1/3 items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-blue-600 active:bg-gray-200 active:text-blue-600'
+          >
+            Men
+          </Link>
+          <Link
+            href='/Teen'
+            className='duration flex w-1/3 items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-blue-600 active:bg-gray-200 active:text-blue-600'
+          >
+            Teens
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
