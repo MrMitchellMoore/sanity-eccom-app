@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { urlFor } from '../lib/sanity'
+import { urlFor } from '../lib/sanityConfig'
 import { useState } from 'react'
 
 interface iAppProps {

@@ -3,9 +3,9 @@
 import { Button } from '@nextui-org/react'
 import { useShoppingCart } from 'use-shopping-cart'
 import { ProductCart } from '../interface'
-import { urlFor } from '../lib/sanity'
+import { urlFor } from '../lib/sanityConfig'
 
-export default function CheckoutNow({
+export default function AddToBag({
   currency,
   description,
   name,
@@ -13,11 +13,7 @@ export default function CheckoutNow({
   price_id,
   image
 }: ProductCart) {
-  const { checkoutSingleItem } = useShoppingCart()
-
-  function buyNow(priceId: string) {
-    return checkoutSingleItem(priceId)
-  }
+  const { addItem, handleCartClick } = useShoppingCart()
 
   const product = {
     name: name,
@@ -28,8 +24,13 @@ export default function CheckoutNow({
     price_id: price_id
   }
   return (
-    <Button color='primary' onPress={() => buyNow(product.price_id)}>
-      Checkout
+    <Button
+      color='secondary'
+      onClick={() => {
+        addItem(product), handleCartClick()
+      }}
+    >
+      Add to Bag
     </Button>
   )
 }

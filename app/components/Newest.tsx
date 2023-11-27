@@ -1,5 +1,5 @@
 import { groq } from 'next-sanity'
-import { client, urlFor } from '../lib/sanity'
+import { client, urlFor } from '../lib/sanityConfig'
 import { simplifiedProduct } from '../interface'
 import { Card, CardBody, CardFooter, Link } from '@nextui-org/react'
 import { ArrowRight } from 'lucide-react'

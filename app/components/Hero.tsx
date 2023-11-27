@@ -1,6 +1,6 @@
 import { Image } from '@nextui-org/react'
 import NextImage from 'next/image'
-import { client, urlFor } from '../lib/sanity'
+import { client, urlFor } from '../lib/sanityConfig'
 import { Link } from '@nextui-org/react'
 import { groq } from 'next-sanity'
 import { heroImage } from '../interface'

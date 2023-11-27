@@ -1,5 +1,5 @@
 import { fullProduct } from '@/app/interface'
-import { client, urlFor } from '@/app/lib/sanity'
+import { client, urlFor } from '@/app/lib/sanityConfig'
 import { groq } from 'next-sanity'
 //import ImageGallery from '@/app/components/ImageGallery'
 import Image from 'next/image'
